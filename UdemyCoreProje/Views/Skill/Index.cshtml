@@ -1,0 +1,67 @@
+﻿@using EntityLayer.Concrete
+@model List<Skill>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_NewAdminLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Deneyimler Tablosu</h4>
+
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Ad</th>
+                            <th>İlerleme</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var x in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @x.SkillID
+                                </td>
+                                <td>
+                                    @x.Title
+                                </td>
+
+
+                                <td>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: @x.Value%" aria-valuenow="@x.Value" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                </td>
+                                <td><a href="/Skill/DeleteSkill/@x.SkillID" class="btn btn-danger">Sil</a> </td>
+                                <td><a onclick="myFunction()" href="/Skill/EditSkill/@x.SkillID" class="btn btn-success">Güncelle</a> </td>
+                                <td></td>
+                            </tr>
+
+
+                        }
+                    </tbody>
+                </table>
+
+                <br />
+
+                <a href="/Skill/AddSkill/" class="btn btn-primary">Yeni Yetenek Ekle</a>
+                <br />
+
+            </div>
+
+
+            <script>
+                function myFunction() {
+                swal("Good job!", "You clicked the button!", "success");
+                }
+            </script>
